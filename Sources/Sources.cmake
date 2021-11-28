@@ -6,8 +6,15 @@ function(gather_includes URLShortener_SOURCE_FILES)
 	)
 	source_group("" FILES ${URLShortener_Source_FILES})
 
+	set(URLShortener_Internal_Crypto_FILES
+		${URLShortener_SOURCE_DIR}/Internal/Crypto/CryptoEncoder.hpp
+		${URLShortener_SOURCE_DIR}/Internal/Crypto/CryptoDecoder.hpp
+	)
+	source_group("Internal/Crypto" FILES ${URLShortener_Internal_Crypto_FILES})
+
 	set(${URLShortener_SOURCE_FILES} 
 		${URLShortener_Source_FILES}
+		${URLShortener_Internal_Crypto_FILES}
 		PARENT_SCOPE
 	)
 endfunction()
@@ -53,5 +60,9 @@ function(setup_url_target EXECUTABLE)
 		${CRYPTO_LIBRARY}
 		${BOOST-JSON_LIBRARY}
 		${BOOST-UNIT-TEST_LIBRARY}
+	)
+
+	target_include_directories(${FINAL_TARGET} PUBLIC
+		"Sources/Internal/Crypto"
 	)
 endfunction()
