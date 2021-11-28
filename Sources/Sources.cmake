@@ -9,6 +9,8 @@ function(gather_includes URLShortener_SOURCE_FILES)
 	set(URLShortener_Internal_Crypto_FILES
 		${URLShortener_SOURCE_DIR}/Internal/Crypto/CryptoEncoder.hpp
 		${URLShortener_SOURCE_DIR}/Internal/Crypto/CryptoDecoder.hpp
+		${URLShortener_SOURCE_DIR}/Internal/Crypto/CryptoUtilities.hpp
+		${URLShortener_SOURCE_DIR}/Internal/Crypto/CryptoUtilities.cpp
 	)
 	source_group("Internal/Crypto" FILES ${URLShortener_Internal_Crypto_FILES})
 
