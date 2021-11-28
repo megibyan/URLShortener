@@ -137,4 +137,7 @@ if(NOT TARGET URLShortener)
 	setup_url_target(FALSE)
 	setup_url_target(TRUE)
 
+	include(${CMAKE_CURRENT_SOURCE_DIR}/Tests/Tests.cmake)
+	setup_test_target(TRUE)
+
 endif() #end IF NOT TARGET URLShortener
