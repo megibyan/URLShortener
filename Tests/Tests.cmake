@@ -36,4 +36,8 @@ function(setup_test_target)
 		${BOOST-UNIT-TEST_LIBRARY}
 		"liburlshortener"
 	)
+
+	target_include_directories(Test PUBLIC
+		"Sources/Internal/Crypto/SHA256"
+	)
 endfunction()
