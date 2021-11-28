@@ -3,6 +3,7 @@
 #include "../Sources/Internal/Crypto/Base62/Base62.hpp"
 #include "../Sources/Internal/Crypto/SHA256/SHA256.hpp"
 #include "../Sources/Internal/Crypto/CRC32/CRC32.hpp"
+#include "../Sources/Internal/URL/URL.hpp"
 
 #include <unistd.h>
 
@@ -87,4 +88,35 @@ BOOST_AUTO_TEST_CASE(SHA256_ENCODER_RANDOM_TEST_SUCCESS) {
 	const auto randomStr = Helpers::generateRandomString();
 	const auto res = sha256.encode(randomStr);
 	BOOST_CHECK(!res.empty());
+}
+
+BOOST_AUTO_TEST_CASE(URL_ENCODER_RANDOM_TEST_SUCCESS) {
+	URL url;
+	const auto randomStr = Helpers::generateRandomString();
+	const auto res = url.encode(randomStr);
+	BOOST_CHECK(!res.empty());
+}
+
+BOOST_AUTO_TEST_CASE(URL_DECODER_RANDOM_TEST_SUCCESS) {
+	URL url;
+	const auto randomStr = Helpers::generateRandomString();
+	
+	BOOST_CHECK_THROW(url.decode(randomStr), boost::wrapexcept<std::range_error>);
+}
+
+BOOST_AUTO_TEST_CASE(URL_BACKWARD_TEST_SUCCESS) {
+	URL url;
+	bool conversionSuccess = true;
+
+	for (int i = 0; i < 1e5; ++i) {
+		const auto randomStr = Helpers::generateRandomString();
+		const auto enc = url.encode(randomStr);
+		const auto dec = url.encode(randomStr);
+		conversionSuccess = enc == dec;
+		if (!conversionSuccess) {
+			break;
+		}
+	}
+
+	BOOST_CHECK(conversionSuccess);
 }

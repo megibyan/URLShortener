@@ -6,6 +6,14 @@ function(gather_includes URLShortener_SOURCE_FILES)
 	)
 	source_group("" FILES ${URLShortener_Source_FILES})
 
+	set(URLShortener_Internal_URL_FILES
+		${URLShortener_SOURCE_DIR}/Internal/URL/URL.hpp
+		${URLShortener_SOURCE_DIR}/Internal/URL/URL.cpp
+		${URLShortener_SOURCE_DIR}/Internal/URL/URLUtilities.hpp
+		${URLShortener_SOURCE_DIR}/Internal/URL/URLUtilities.cpp
+	)
+	source_group("Internal/URL" FILES ${URLShortener_Internal_URL_FILES})
+
 	set(URLShortener_Internal_Crypto_FILES
 		${URLShortener_SOURCE_DIR}/Internal/Crypto/CryptoEncoder.hpp
 		${URLShortener_SOURCE_DIR}/Internal/Crypto/CryptoDecoder.hpp
@@ -35,6 +43,7 @@ function(gather_includes URLShortener_SOURCE_FILES)
 	set(${URLShortener_SOURCE_FILES} 
 		${URLShortener_Source_FILES}
 		${URLShortener_Internal_Crypto_FILES}
+		${URLShortener_Internal_URL_FILES}
 		${URLShortener_Internal_SHA256_FILES}
 		${URLShortener_Internal_Base62_FILES}
 		${URLShortener_Internal_CRC32_FILES}
@@ -87,6 +96,7 @@ function(setup_url_target EXECUTABLE)
 
 	target_include_directories(${FINAL_TARGET} PUBLIC
 		"Sources/Internal/Crypto"
+		"Sources/Internal/URL"
 		"Sources/Internal/Crypto/SHA256"
 		"Sources/Internal/Crypto/Base62"
 		"Sources/Internal/Crypto/CRC32"
