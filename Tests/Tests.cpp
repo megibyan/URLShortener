@@ -1,6 +1,7 @@
 #define BOOST_TEST_MODULE BASIC_TESTS
 
 #include "../Sources/Internal/Crypto/SHA256/SHA256.hpp"
+#include "../Sources/Internal/Crypto/CRC32/CRC32.hpp"
 
 #include <unistd.h>
 
@@ -25,6 +26,13 @@ namespace Helpers {
 		}
 	} /* namespace */
 } /* namespace Helpers */
+
+BOOST_AUTO_TEST_CASE(CRC32_ENCODER_RANDOM_TEST_SUCCESS) {
+	CRC32 crc32;
+	const auto randomStr = Helpers::generateRandomString();
+	const auto res = crc32.encode(randomStr);
+	BOOST_CHECK(res > 0);
+}
 
 BOOST_AUTO_TEST_CASE(SHA256_ENCODER_RANDOM_TEST_SUCCESS) {
 	SHA256 sha256;

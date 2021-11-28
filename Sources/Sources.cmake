@@ -18,10 +18,17 @@ function(gather_includes URLShortener_SOURCE_FILES)
 	)
 	source_group("Internal/Crypto/SHA256" FILES ${URLShortener_Internal_SHA256_FILES})
 
+	set(URLShortener_Internal_CRC32_FILES
+		${URLShortener_SOURCE_DIR}/Internal/Crypto/CRC32/CRC32.hpp
+		${URLShortener_SOURCE_DIR}/Internal/Crypto/CRC32/CRC32.cpp
+	)
+	source_group("Internal/Crypto/CRC32" FILES ${URLShortener_Internal_CRC32_FILES})
+
 	set(${URLShortener_SOURCE_FILES} 
 		${URLShortener_Source_FILES}
 		${URLShortener_Internal_Crypto_FILES}
 		${URLShortener_Internal_SHA256_FILES}
+		${URLShortener_Internal_CRC32_FILES}
 		PARENT_SCOPE
 	)
 endfunction()
@@ -72,5 +79,6 @@ function(setup_url_target EXECUTABLE)
 	target_include_directories(${FINAL_TARGET} PUBLIC
 		"Sources/Internal/Crypto"
 		"Sources/Internal/Crypto/SHA256"
+		"Sources/Internal/Crypto/CRC32"
 	)
 endfunction()
