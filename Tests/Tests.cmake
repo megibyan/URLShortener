@@ -38,6 +38,7 @@ function(setup_test_target)
 	)
 
 	target_include_directories(Test PUBLIC
+		"Sources/Internal/Crypto/Base62"
 		"Sources/Internal/Crypto/CRC32"
 		"Sources/Internal/Crypto/SHA256"
 	)
