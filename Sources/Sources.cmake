@@ -6,6 +6,12 @@ function(gather_includes URLShortener_SOURCE_FILES)
 	)
 	source_group("" FILES ${URLShortener_Source_FILES})
 
+	set(URLShortener_External_Service_FILES
+		${URLShortener_SOURCE_DIR}/External/Service/Service.hpp
+		${URLShortener_SOURCE_DIR}/External/Service/Service.cpp
+	)
+	source_group("External/Service" FILES ${URLShortener_External_Service_FILES})
+
 	set(URLShortener_Internal_URL_FILES
 		${URLShortener_SOURCE_DIR}/Internal/URL/URL.hpp
 		${URLShortener_SOURCE_DIR}/Internal/URL/URL.cpp
@@ -42,6 +48,7 @@ function(gather_includes URLShortener_SOURCE_FILES)
 
 	set(${URLShortener_SOURCE_FILES} 
 		${URLShortener_Source_FILES}
+		${URLShortener_External_Service_FILES}
 		${URLShortener_Internal_Crypto_FILES}
 		${URLShortener_Internal_URL_FILES}
 		${URLShortener_Internal_SHA256_FILES}
@@ -95,6 +102,7 @@ function(setup_url_target EXECUTABLE)
 	)
 
 	target_include_directories(${FINAL_TARGET} PUBLIC
+		"Sources/External/Service"
 		"Sources/Internal/Crypto"
 		"Sources/Internal/URL"
 		"Sources/Internal/Crypto/SHA256"
