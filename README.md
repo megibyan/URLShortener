@@ -91,9 +91,6 @@ or use `Test.sh` located at `Auxiliary/Scripts`
 $ ./Test
 ```
 
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
-
 ## Future improvements
  - Support for other OSs.
    - This should be as simple as building third party dependencies for the platforms.
