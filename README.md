@@ -95,15 +95,9 @@ $ ./Test
 [MIT](https://choosealicense.com/licenses/mit/)
 
 ## Future improvements
- - Get rid of Served and do the server handling using boost natively.
-   - There are a couple of issues in the library, and it's not maintained anymore.
  - Support for other OSs.
    - This should be as simple as building third party dependencies for the platforms.
- - Short URL can be 7 characters fixed.
- - Use a non SQL DB instead of memory hashing.
  - Third party dependencies should have better place to live.
- - Rebuild `boost` with `-DCXX_VISIBILITY_PRESET=hidden`.
 
-### Known issues
-  - In case of internal crash the service process may still live because of a corner case bug in `Served` library.
+### Limitations
   - Current encoding guarantees the uniqueness but doesn't guaranty the short URL length.
